@@ -75,8 +75,7 @@ def analyze_with_ai(email_text, indicators):
         api_key=api_key
     )
 
-    prompt = f"""You are a phishing detection assistant. Analyze this email and the detected indicators.
-
+    prompt = f"""You are a phishing detection assistant. Analyze the email below and the potential signals that were detected.
 EMAIL:
 {email_text[:2000]}
 
