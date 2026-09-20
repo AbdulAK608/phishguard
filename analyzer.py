@@ -5,6 +5,14 @@ from openai import OpenAI
 
 load_dotenv()
 
+try:
+    import streamlit as st
+    API_KEY = os.environ.get("GROQ_API_KEY") or st.secrets.get("GROQ_API_KEY")
+except Exception:
+    API_KEY = os.environ.get("GROQ_API_KEY")
+
+
+
 
 
 def extract_urls(text):
@@ -64,8 +72,8 @@ def analyze_text(text):
 def analyze_with_ai(email_text, indicators):
     """Send the email and extracted indicators to Groq for risk assessment"""
     client = OpenAI(
-        base_url="https://api.groq.com/openai/v1",
-        api_key=os.environ["GROQ_API_KEY"]
+    base_url="https://api.groq.com/openai/v1",
+    api_key=API_KEY
     )
     
     prompt = f"""You are a phishing detection assistant. Analyze this email and the detected indicators.
